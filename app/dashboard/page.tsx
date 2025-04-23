@@ -36,70 +36,68 @@ export default function Dashboard() {
   }, [selectedCity])
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <div className="w-full md:w-auto">
-          <Select value={selectedCity} onValueChange={setSelectedCity}>
-            <SelectTrigger className="w-full md:w-[180px]">
-              <SelectValue placeholder="Select city" />
-            </SelectTrigger>
-            <SelectContent>
-              {cities.map((city) => (
-                <SelectItem key={city.value} value={city.value}>
-                  {city.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+  <div className="space-y-6">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+      <div className="w-full md:w-auto">
+        <Select value={selectedCity} onValueChange={setSelectedCity}>
+          <SelectTrigger className="w-full md:w-[180px]">
+            <SelectValue placeholder="Select city" />
+          </SelectTrigger>
+          <SelectContent>
+            {cities.map((city) => (
+              <SelectItem key={city.value} value={city.value}>
+                {city.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
-
-      {currentAQI && currentAQI > 100 && (
-        <Alert variant="destructive">
-          <ExclamationTriangleIcon className="h-4 w-4" />
-          <AlertTitle>Poor Air Quality Alert</AlertTitle>
-          <AlertDescription>
-            The current Air Quality Index (AQI) is {currentAQI}, which is considered unhealthy. Take necessary
-            precautions.
-          </AlertDescription>
-        </Alert>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <AirQualityCard city={selectedCity} loading={loading} />
-        <AirQualityInsight city={selectedCity} aqi={currentAQI} loading={loading} />
-      </div>
-
-      <AirQualityStats city={selectedCity} />
-
-      <Card>
-        <CardHeader className="pb-2">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <CardTitle>Historical AQI Trends</CardTitle>
-            <Tabs value={timeRange} onValueChange={setTimeRange} className="mt-2 md:mt-0">
-              <TabsList>
-                <TabsTrigger value="24h">24h</TabsTrigger>
-                <TabsTrigger value="7d">7d</TabsTrigger>
-                <TabsTrigger value="30d">30d</TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[350px]">
-            <TabsContent value="24h" className="h-full">
-              <AirQualityChart city={selectedCity} hours={24} />
-            </TabsContent>
-            <TabsContent value="7d" className="h-full">
-              <AirQualityChart city={selectedCity} hours={168} />
-            </TabsContent>
-            <TabsContent value="30d" className="h-full">
-              <AirQualityChart city={selectedCity} hours={720} />
-            </TabsContent>
-          </div>
-        </CardContent>
-      </Card>
     </div>
-  )
+
+    {currentAQI && currentAQI > 100 && (
+      <Alert variant="destructive">
+        <ExclamationTriangleIcon className="h-4 w-4" />
+        <AlertTitle>Poor Air Quality Alert</AlertTitle>
+        <AlertDescription>
+          The current Air Quality Index (AQI) is {currentAQI}, which is considered unhealthy. Take necessary
+          precautions.
+        </AlertDescription>
+      </Alert>
+    )}
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <AirQualityCard city={selectedCity} loading={loading} />
+      <AirQualityInsight city={selectedCity} aqi={currentAQI} loading={loading} />
+    </div>
+
+    <AirQualityStats city={selectedCity} />
+
+    <Card>
+      <CardHeader className="pb-2 flex flex-col md:flex-row justify-between items-start md:items-center">
+        <CardTitle>Historical AQI Trends</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Tabs value={timeRange} onValueChange={setTimeRange} className="h-[350px]">
+          <TabsList>
+            <TabsTrigger value="24h">24h</TabsTrigger>
+            <TabsTrigger value="7d">7d</TabsTrigger>
+            <TabsTrigger value="30d">30d</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="24h" className="h-full">
+            <AirQualityChart city={selectedCity} hours={24} />
+          </TabsContent>
+          <TabsContent value="7d" className="h-full">
+            <AirQualityChart city={selectedCity} hours={168} />
+          </TabsContent>
+          <TabsContent value="30d" className="h-full">
+            <AirQualityChart city={selectedCity} hours={720} />
+          </TabsContent>
+        </Tabs>
+      </CardContent>
+    </Card>
+  </div>
+)
+
 }
