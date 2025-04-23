@@ -66,27 +66,27 @@ export default function ComparePage() {
             <CardTitle>
               Comparing {getCityLabel(city1)} and {getCityLabel(city2)}
             </CardTitle>
-            <Tabs value={timeRange} onValueChange={setTimeRange} className="mt-2 md:mt-0">
-              <TabsList>
-                <TabsTrigger value="24h">24h</TabsTrigger>
-                <TabsTrigger value="7d">7d</TabsTrigger>
-                <TabsTrigger value="30d">30d</TabsTrigger>
-              </TabsList>
-            </Tabs>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="h-[400px]">
-            <TabsContent value="24h" className="h-full">
-              <ComparisonChart city1={city1} city2={city2} hours={24} />
-            </TabsContent>
-            <TabsContent value="7d" className="h-full">
-              <ComparisonChart city1={city1} city2={city2} hours={168} />
-            </TabsContent>
-            <TabsContent value="30d" className="h-full">
-              <ComparisonChart city1={city1} city2={city2} hours={720} />
-            </TabsContent>
-          </div>
+          <Tabs value={timeRange} onValueChange={setTimeRange} className="w-full h-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="24h">24h</TabsTrigger>
+              <TabsTrigger value="7d">7d</TabsTrigger>
+              <TabsTrigger value="30d">30d</TabsTrigger>
+            </TabsList>
+            <div className="h-[400px]">
+              <TabsContent value="24h" className="h-full">
+                <ComparisonChart city1={city1} city2={city2} hours={24} />
+              </TabsContent>
+              <TabsContent value="7d" className="h-full">
+                <ComparisonChart city1={city1} city2={city2} hours={168} />
+              </TabsContent>
+              <TabsContent value="30d" className="h-full">
+                <ComparisonChart city1={city1} city2={city2} hours={720} />
+              </TabsContent>
+            </div>
+          </Tabs>
         </CardContent>
       </Card>
     </div>
