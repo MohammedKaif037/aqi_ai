@@ -116,37 +116,6 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="api" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>API Keys</CardTitle>
-              <CardDescription>Manage API keys for external services</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="openweather-key">OpenWeather API Key</Label>
-                <Input
-                  id="openweather-key"
-                  type="password"
-                  placeholder="Enter your OpenWeather API key"
-                  defaultValue="••••••••••••••••"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="chatanywhere-key">ChatAnywhere API Key</Label>
-                <Input
-                  id="chatanywhere-key"
-                  type="password"
-                  placeholder="Enter your ChatAnywhere API key"
-                  defaultValue="••••••••••••••••"
-                />
-              </div>
-
-              <Button>Update API Keys</Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
 
         <TabsContent value="about" className="space-y-4">
           <Card>
