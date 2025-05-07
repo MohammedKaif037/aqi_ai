@@ -22,8 +22,7 @@ export default function SettingsPage() {
         <TabsList>
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="appearance">Appearance</TabsTrigger>
-          <TabsTrigger value="api">API Keys</TabsTrigger>
-          <TabsTrigger value="about">About</TabsTrigger>
+           <TabsTrigger value="about">About</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="space-y-4">
